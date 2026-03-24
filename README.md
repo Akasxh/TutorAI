@@ -1,68 +1,67 @@
 # TutorAI
 
-__SLIDES__ : https://docs.google.com/presentation/d/1ZHfCLAz0H5t1kDtCNpTNRBSRuSfqwA0Ap_MCCVWIW6c/edit?usp=drive_link
+Interactive educational platform that uses LangChain and OpenAI to generate questions, evaluate free-form answers, and provide personalized feedback across multiple learning scenarios.
 
+```mermaid
+flowchart TD
+    A[Select Scenario] --> B{Mode}
+    B -->|Learn| C[Enter Subject]
+    B -->|Talk / Test| D[Use Preset Scenario]
+    C --> E[Generate Questions]
+    D --> E
+    E --> F[Display Question]
+    F --> G[User Writes Answer]
+    G --> H[Rate Answer]
+    G --> I[Generate Suggestion]
+    H --> J[Score Display]
+    I --> J
+    J --> K{More Questions?}
+    K -->|Yes| F
+    K -->|No| L[Final Score]
 
-__DOCUMENT__ :https://drive.google.com/file/d/1nefidoTexItWCCA-r1yT74g5hBIJ25Bb/view?usp=sharing
-
-
-__HOW TO USE__:https://docs.google.com/presentation/d/1rgD5Gc7kOj_0LTpyhEyJm9NWE_pm0yxIFKZiBSDbbJY/edit?usp=sharing
-
-
-#### TutorAI: Unlocking Your Potential
-
-TutorAI is an innovative educational platform powered by OpenAI's GPT-3 and Langchain technologies. It offers three core features - "Learn," "Talk," and "Test" - to enhance the learning experience. Built using the Streamlit framework, TutorAI aims to revolutionize how learners interact with and consume educational content.
-
-#### Interactive Learning
-
-Our platform offers an interactive learning experience like no other. You have the freedom to choose from a variety of real-life situations and scenarios in which you'd like to improve your skills.
-
-### Key Features
-
-##### Learn:
-
-In the "Learn" module, users can input questions or topics they want to learn about. TutorAI leverages GPT-3's natural language processing capabilities to generate informative, human-like responses. Whether it's explanations, historical context, scientific concepts, or language translation, TutorAI acts as a personalized tutor, providing detailed, context-aware explanations.
-
-#### Talk:
-
-The "Talk" feature transforms TutorAI into an interactive conversation partner. Users can engage in natural conversations with the AI, seeking answers to their queries, discussing ideas, or simply engaging in stimulating dialogue. Whether it's brushing up on a foreign language or having a deep discussion about a favorite book, TutorAI is ready to chat.
-
-#### Test:
-
-The "Test" function is a powerful tool for assessment. Users can create custom quizzes and tests on any subject, and TutorAI will generate questions with multiple-choice answers. After taking the test, users receive immediate feedback and explanations for the correct answers. This feature is ideal for both self-assessment and practicing for exams or certifications.
-
-### Try it out
-
-Make sure to have git installed: https://git-scm.com/
-
+    style E fill:#1e293b,color:#e2e8f0
+    style H fill:#1e293b,color:#e2e8f0
 ```
+
+## Features
+
+- **Three learning modes** -- *Learn* (custom subject), *Talk* (conversational practice), and *Test* (scenario-based assessment)
+- **Dynamic question generation** -- LangChain prompt templates generate contextual questions per selected scenario
+- **Multi-dimensional scoring** -- Each answer is rated on multiple criteria and returned as a structured JSON score
+- **Targeted suggestions** -- Identifies the weakest scoring dimension and generates specific improvement advice
+- **Cumulative progress** -- Running score tracked across all questions in a session
+
+## Quick Start
+
+```bash
 git clone https://github.com/Akasxh/TutorAI.git
-```
-Now run
-```
 cd TutorAI
-pip install –r requirements.txt
+pip install -r requirements.txt
 streamlit run main.py
 ```
 
-### Technology Stack
+Enter your OpenAI API key in the sidebar, select a scenario, and start learning.
 
-__Streamlit__: The user interface is hosted on Streamlit, a Python library that simplifies web application development.
+## Project Structure
 
-__OpenAI API__: The OpenAI API is the backbone of the "Learn" and "Talk" features, providing natural language understanding and generation capabilities.
+```
+TutorAI/
+├── main.py              # Streamlit UI and session management
+├── tutor_model.py       # Tutor class: question generation, answer rating, suggestions
+├── templates.py         # Prompt templates and scenario definitions
+├── requirements.txt
+└── LICENSE
+```
 
-__Langchain__: Langchain technology is integrated to enhance language understanding, making interactions more context-aware and informative.
+## Tech Stack
 
+| Component | Technology |
+|-----------|-----------|
+| UI | Streamlit |
+| LLM | OpenAI GPT-3 via LangChain |
+| Prompt Engineering | LangChain PromptTemplate |
+| Runtime | Python 3.8+ |
 
-## Contributors
+## License
 
-Team Lead - S Akash
-
-Yash Kamdar
-
-Ammar Ahmad
-
-Kushal Agarwal
-
-Aditya Agarwal
-
+MIT
